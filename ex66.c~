@@ -1,0 +1,56 @@
+/* Ex 6.6: do ex 6.2 using derivative information */
+/* 
+Ex 6.2 says to solve LaPlace's equation using Legendre polynomials... Write a C-program to find the //minimum// of the n=3 polynomial:
+                      P3(x) = 1/2 (5x^3 - 3x) 
+using the initial bracket (0.0, 0.5, 1.0).
+*/
+
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+  double x0 = 0,x = 1,a,b,c;
+
+  a = 0.0;
+  b = 0.5;
+  c = 1.0;
+
+  while(fabs(x - x0) > 1E-6)
+    {
+      if(df(b) > 0)
+	{
+	  x0 = x;
+	  x = b - (df(b)*(c-b))/(df(c)-df(b));
+	  a = b;
+	  b = x;
+	  printf("P3(%lf) = %lf\n",x,P3(x));
+	}
+      else if(df(b) < 0)
+	{
+	  x0 = x;
+	  x = a - (df(a)*(b-a))/(df(b)-df(a));
+	  c = b;
+	  b = x;
+	  printf("P3(%lf) = %lf\n",x,P3(x));
+	}
+    }
+  printf("The root at %lf = %lf\n",x,f(x));
+  
+  return(0);  
+}
+
+double P3(double x)
+{
+  double f;
+  f = .5*x*(5*x*x - 3);
+  return(f);
+}
+
+double dP3(double x)
+{
+  double f;
+  f = .5*(15*x*x - 3);
+  return(f);
+}

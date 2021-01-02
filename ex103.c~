@@ -1,0 +1,31 @@
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "comphys.h"
+#include "comphys.c"
+
+int main() {
+  FILE *in,*out,*rsp;
+  float wave;
+  int m, y;
+
+  y = 1024; //y must be a power of 2
+  
+  // Prepare to write for plotting
+  printf("\nLow pass filter -- Fast Fourier transform algorithm (outfile = \"ex103.out\")");
+  if ((in=fopen("UHA21.nor","r"))==NULL) {
+    printf("\nCannot open file for output\n");
+    return(0);  		
+  }
+
+  if ((out=fopen("ex103.out","w"))==NULL) {
+    printf("\nCannot open file for output\n");
+    return(0);  		
+  }
+
+  for (m = 1; m <= y; m++) {
+    if {
+    }     //if the input is NULL ?? then put a zero, otherwise read in the value to a vector
+    
+    else {
+      wave[m] = 

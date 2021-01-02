@@ -1,0 +1,71 @@
+#include <math.h>
+#include <stdio.h>
+#include "comphys.h"
+#include "comphys.c"
+
+float *x,*y;
+float X1(x);
+float X2(x);
+float X3(x);
+float X4(x);
+const float pi = 3.141592654;
+
+int main(){
+  float **a, **A, **b;
+  float x, y;
+  float X[4] = {X1,X2,X3,X4};
+  float **xi,fret;
+  int iter=0;
+  int i,j,k,l,M,m;
+  FILE *in;
+
+  m = 1;
+  M = 4; //coefficients a1 through a4
+  N = 4;
+
+  x = vector(0,100);
+  y = vector(0,100);
+  a = matrix(1,4,1,1);
+  A = matrix(1,4,1,4);
+  b = matrix(1,4,1,1);
+
+  if((in = fopen("data95.dat","r")) == NULL) {
+    printf("\nCannot find input file\n");
+    exit(1);
+  }
+
+  /* initiate yi[] */
+  l = 1;
+  while(fscanf(in,"%f %f",&x[l],&y[l]) != EOF ) {
+    for(k=1;k<=M;k++) {
+      b[k][l] += y[l]*X[k-1](x[l]);
+      for(j=1;j<=M;j++) A[k][j] += X[k-1](x[l])*X[j-1](x[l]);
+    }
+    l++;
+  }
+  fclose(in);
+
+  gaussj(A,n,b,m); //returns inverse of A (it should, at least!)
+  
+  /* Allocate memory for the p vector and the xi matrix */
+  xi = matrix(1,4,1,4);
+
+  
+  /* Initial directions */
+  for(i=1;i<=4;i++) {
+    for(j=1;j<=4;j++) {
+      if(i == j) xi[i][j] = 1.0;
+      else xi[i][j] = 0.0;
+    }
+  }
+
+  return(0);
+}
+
+float chi2(float x[]){
+  float y, chi2;
+  int i,j,k,m,N;
+
+  
+  return(chi2);
+}

@@ -1,0 +1,24 @@
+/* 
+Use planck(wave,T) (defined in comphys.c) to find maximum B(wave) at 2000k, 5000k, 8000k, 11000k, 14000k. Use GNUplot against 1/T to show that the slope of the line is 2.9E7 Angstrom.K. 
+HINT: find Minimum of -B(wave)
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "comphys.c"
+#include "comphys.h"
+#include <math.h>
+
+float dB(float wave, float T);
+  
+int main()
+{
+  
+}
+
+float dB(float wave, float T)
+{
+  double f;
+  f = 1.19106E27/((wave*wave*wave*wave*wave)*(exp(1.43879E8/(wave*T))-1));
+  return(f);
+}
