@@ -1,0 +1,17 @@
+/* Ex 1.7 Basic "Climate" Model */
+
+#include <stdio.h>
+#include <math.h>
+
+int main(){
+  const double L = 3.839*pow(10,26);
+  double a,R,T;
+  const double s = 5.671*pow(10,-8); //s is for sigma
+  int ni;
+
+  printf("\nThis program calculates the blackbody temperature of a planet assuming no atmosphere. Please input the the albedo, 'a', and the radius from the sun, 'R': ( a , R ): ");
+  scanf("%lf,%lf",a,R);
+
+  T = pow(((L*(1-a))/(16*pi*s*R*R)),.25);
+  printf("\nThe blackbody temperature of this planet is %10f.\n",T);
+}

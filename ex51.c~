@@ -1,0 +1,71 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int sgn(double y);
+double f(double x);
+
+int main(){
+
+  int ni,n;
+  int sgna0, sgnb0, sgnmid;
+  double fa, fb;
+  double mid;
+  double x0,x1;
+  double a0 = 3;
+  double b0 = 4;
+  double a,b;
+  double eps = 1E-6;
+  
+  
+  printf("Please enter a guess of boundaries a and b for the root \n> a,b = ");
+  ni = scanf("%lf,%lf",&a0,&b0);
+
+  sgna0 = sgn(f(a0));
+  sgnb0 = sgn(f(b0));
+  mid = (a+b)/2;
+  sgnmid = sgn(f(mid));
+  a = a0;
+  a = b0;
+
+
+  /* Here we will calculate new values for x until 
+x(n) - x(n-1) is less than the desired accuracy, epsilon */
+
+  while(fabs(x0-mid) > eps*fabs(b0-a0)){
+    if(sgnx == sgna0){
+      x0 = mid;
+      mid = (mid+b)/2;
+      b = mid;
+      
+    }else if(sgnx == sgnb0){
+      x0 = mid;
+      mid = (mid+a)/2;
+      a = mid;
+      
+    }else{
+      printf("Error\n");
+    }
+  }
+  
+  printf("There's a root at x = %f.\n",f(x0));
+  return(0);
+}
+
+
+double f(double x){
+  double g;
+  g = 5*x*x + 9*x - 80;
+  return(g);
+}
+
+int sgn(double y){
+  if(y > 0){
+    return(1);
+  }else if(y<0){
+    return(-1);
+  }else{
+    printf("%lf is a root!\n",y);
+    exit(0);
+  }
+}
