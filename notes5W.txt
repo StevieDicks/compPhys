@@ -1,0 +1,31 @@
+Quick discussion of HW3:
+Dynamic allocation!!!
+
+can allocate space for as much memory as you fucking want
+.....OR.....
+if dealing with files that are variable size... you want to be able to deal with that with dynamic allocation. So you should read the file in TWICE: open it, read it to dummy variables and COUNT the number of lines the first time, then close it. Now that you have counted, you can open the file again and read "N" in for the vector size.
+
+"\t" is tab
+
+count file lines:
+n=0;
+while(fscanf(in,"%lf",&dummy) != EOF) n++;
+...
+fclose(in);
+
+
+
+Section 4.2
+Finding value AND derivative of function: only thing you can do is go to higher order interpolation.
+
+POLYNOMIAL INTERPOLATION
+approximate the function as a higher order polynomial:
+/P(x) function in notes is GUARANTEED to go through all points in function... so if you have a 100 point function, you will get an N=99 degree approximation...
+/CONS: you will have 99 local minima and maxima
+/FIX: you can use this function to approximate smaller areas of the function, like 3 points instead of all 100.
+
+"4 point lagrange interpolation"
+/You can always find a cubic that will go through four points. So, to disregard ambiguity between two points you will not have to pick one side or the other
+/L(x) in notes. This calculation will give a cubic polynomial that goes through the four points.
+/Identify bracket, find four points, plug four points into L(x), evaluate.
+

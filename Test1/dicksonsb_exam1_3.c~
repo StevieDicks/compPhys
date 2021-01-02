@@ -1,0 +1,38 @@
+/* Ising Model */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include "comphys.c"
+#include "comphys.h"
+
+int main(){
+  int ising;
+  arbvector = ivector[10];
+
+  for(i=0, i<10, i++){
+    arbvector[i] = ising();
+  }
+
+  return(0);
+}
+
+int ising(){
+  long idum = -1;
+  time_t now;
+  float x, rn;
+  int L;
+  
+  now = time (NULL);
+
+  idum = -1*now;
+
+  rn = ran1(idum);
+
+  x = ran1(idum);
+  if(x <= .5){
+    L = -1;
+  }else{
+    L = 1;
+  }
+  return(L);

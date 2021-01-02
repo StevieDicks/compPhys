@@ -1,0 +1,59 @@
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+double U(double L, double x);
+
+int main()
+{
+  float Ueff;
+  float x;
+  float a, b, c;
+  int ni;
+  FILE *out,*rsp;
+  char outfile[80];
+  
+  printf("This program will plot the Bessel function J0 from t = 0 to 15\nEnter the name of the OUTPUT FILE\n > ");
+  ni = scanf("%s",outfile);
+  
+  if((out = fopen(outfile,"w")) == NULL)
+    {
+      printf("\nCannot open %s for writing\n",outfile);
+      exit(1);
+    }
+
+  for(x=0; x<=15; x=x+.1)
+    {
+      Ueff = U(L);
+      fprintf(out,"%lf, %lf\n",x,L);
+    }
+
+  fclose(out);
+
+
+  
+  /* print to GNUplot */
+  
+  if((rsp = fopen("gnuplot.rsp","w")) == NULL)
+    {
+      printf("\nCannot open gnuplot.rsp for writing\n");
+      exit(1);
+    }
+  fprintf(rsp,"set xrange[0:15]\n");
+  fprintf(rsp,"plot '%s' using 1:2 with lines\n",outfile);
+  fprintf(rsp,"pause mouse\n");
+  fprintf(rsp,"replot\n");
+  fclose(rsp);
+  if(system("gnuplot gnuplot.rsp") == -1)
+    {
+      printf("\nCommand could not be executed\n");
+      exit(1);
+    }
+}
+
+double U(double L, double x)
+{
+  double f;
+  f = -1/x + L*L/(2*x*x) - L*L/(x*x*x);
+  return(f);
+}

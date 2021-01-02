@@ -1,0 +1,29 @@
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "comphys.h"
+#include "comphys.c"
+
+int main() {
+  float *A, x, Fo, m, wo, B; //variables and constants for Amplitude of oscillation equation A = (Fo/m)*(1/sqrt(wo2-w2+4B2*w2))
+  //x = w, where w is the variable frequency
+  FILE *out,*rsp;
+  int i;
+
+  if((out = fopen("SEMhw3_5.dat","w")) == NULL) {
+    printf("\nCannot open file for output\n");
+    exit(1);
+  }
+
+  A = vector(1,1000);
+  x = 0.0;
+  dx = 0.5;
+  Fo = pow(10,-12);
+  m = pow(1.72,-15);
+  wo = pow(1.5262,14);
+  B = 29070;
+
+  for(i=1;i<=1000;i++) {
+    A[i] = (Fo/m)*(1/sqrt(wo*wo - x*(x + 4*B*x)));
+    x += dx;
+  }

@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+
+int main(){
+  double t,m,g,b,v;
+  double vterm;
+
+  g = 9.8;
+  t = 0.0;
+
+  printf("\nPlease enter mass and air resistance, m and b, as such: m,b > ");
+  scanf("%lf,%lf",&m,&b);
+
+  v = -(m * g / b)*(1 - exp(-b * t / m));
+
+  printf("\n    The final velocity, v = %lf",v);
+}

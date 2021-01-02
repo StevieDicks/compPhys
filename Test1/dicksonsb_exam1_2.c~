@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <math.h>
+
+
+int main(){
+  double co2,dT;
+  int year;
+  FILE *in,*out,*rsp;
+  char outfile[80];
+  float *wave;
+  float *flux;
+  FILE *in,*out;
+
+  wave = dvector(0,1023);
+  flux = dvector(0,1023);
+
+  if((in = fopen("hip17695.flx","r")) == NULL) {
+    printf("Cannot open vostok data file\n");
+    exit(1);
+  }
+  if((out = fopen("hip17695.flx","w")) == NULL) {
+    printf("Cannot open vostok data file\n");
+    exit(1);
+  }
+  if((out = fopen(outfile,"w")) == NULL) {
+    printf("\nCannot open %s for writing\n",outfile);
+    exit(1);
+  }
+
+  k = 0;
+  while(fscanf(in,"%f",&wave[k]) != EOF) k++;
+
+  for(i=0;i<k;i++) {
+    result = planck(wave[i],T);
+    fprintf(out,"%7.1f  %e\n",wave[i],result);
+  }
+
+  fclose(in);
+  fclose(out);
+
+  return(0);
+}

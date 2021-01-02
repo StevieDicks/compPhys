@@ -1,0 +1,49 @@
+Exam: 
+3 problems, 2 hours, 3 programs...bring whatever would help.
+
+section 3.2.
+must close output file before reading it
+use fopen so you don't have to pipe data
+FILE is data type for data streams. Define pointers.
+
+sec 3.3
+see ex35.c for good example (Planck program) on file I/O
+
+sec 3.4
+how to initialize matrix
+unit offset vectors have 1 instead of 0
+     ex: r = vector(0,100) --> r[0]...r[100]
+     ex: r = vector(1,100) --> r[1]...r[100]
+     unit offset:
+use a pointer to define:
+     	  C = c-1; //where c[4] is vector from 0 to 3
+	  vector C will go from 1 to 4 instead of 0 to 3
+	  
+
+sec 3.5 best practices in C
+
+
+
+
+
+
+
+
+
+
+
+These feelings of the past are so vivid. 
+I feel things through my memory
+  that I thought I wouldn't feel again--
+  lost in the abyss of forgottenness.
+I don't know why this has been happening.
+Perhaps I'm finding things out about myself
+  that I thought should be left behind;
+  good things so far, feelings I used
+  to love and look forward to; feelings
+  I knew were central to life.
+And perhaps I learned to deny these feelings.
+As I grew older, I learned things that
+  would override these. But the things I learned
+  taught me new feelings, and those new feelings
+  have brought things like anxiety and numbness.
